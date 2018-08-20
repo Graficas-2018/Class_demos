@@ -70,7 +70,8 @@ function createSquare(gl)
     var verts = [
         0.0,  0.5,  0.0,
         -.5,  -.5,  0.0,
-        .5, -.5,  0.0
+        .5, -.5,  0.0,
+        0, -1, 0
     ];
     // void gl.bufferData(target, ArrayBufferView srcData, usage, srcOffset, length);
     // target = gl.ARRAY_BUFFER: Buffer containing vertex attributes, such as vertex coordinates, texture coordinate data, or vertex color data.
@@ -79,7 +80,7 @@ function createSquare(gl)
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(verts), gl.STATIC_DRAW);
 
     // The resulting object contains the vertexbuffer, the size of the vertex structure (3 floats, x, y, z), the number of vertices to be drawn, the the primitive to draw.
-    var square = {buffer:vertexBuffer, vertSize:3, nVerts:3, primtype:gl.TRIANGLE_STRIP};
+    var square = {buffer:vertexBuffer, vertSize:3, nVerts:4, primtype:gl.TRIANGLE_STRIP};
     return square;
 }
 
