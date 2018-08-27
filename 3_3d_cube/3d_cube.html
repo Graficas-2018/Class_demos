@@ -16,9 +16,10 @@
 			    var gl = initWebGL(canvas);
 		        initViewport(gl, canvas);
 		        initGL(canvas);
-                var cube = createCube(gl, [0, 0, -1], [1, 1, -1]);
+                var cube = createCube(gl, [0, 0, -1], [1, 1, 1]);
 		        initShader(gl);
-		        run(gl, [cube]);
+				run(gl, [cube]);
+				
 			}
 	);
 
@@ -27,7 +28,7 @@
 </head>
 <body>
 
-    <canvas id="webglcanvas" style="border: none;" width="500" height="500"></canvas>
+    <canvas id="webglcanvas" style="border: none;" width="800" height="500"></canvas>
 
 </body>
 </html>
