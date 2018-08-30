@@ -4,8 +4,6 @@ scene = null,
 camera = null,
 cube = null;
 
-var objLoader = null;
-
 var duration = 5000; // ms
 var currentTime = Date.now();
 function animate() 
@@ -50,14 +48,18 @@ function scene_setup()
     scene.add(camera);
 
     // Add a directional light to show off the object
-    var light = new THREE.DirectionalLight( 0xffffff, 1.2);
+    var light = new THREE.DirectionalLight( new THREE.Color("rgb(0, 200, 0)"), 1.2);
 
     // Position the light out from the scene, pointing at the origin
-    light.position.set(0, 0, 2);
-    light.target.position.set(-1,1,0);
+    light.position.set(0, -2, 2);
+    light.target.position.set(0,0,0);
 
-    // scene.add(light.target);
+    // var light2 = new THREE.DirectionalLight(0x00bb00, 0.2);
+    // light2.position.set(0, -2, 2);
+    // light2.target.position.set(0,0,0);
+
     scene.add( light );
+    // scene.add(light2);
 }
 
 function create_cube()
@@ -69,6 +71,7 @@ function create_cube()
 
     // Now, create a Phong material to show shading; pass in the map. Color has to be passed in hexadecimal.
     var material = new THREE.MeshPhongMaterial({ map: texture, color: 0xffffff });
+    // var material = new THREE.MeshBasicMaterial({map:texture});
 
     // Create the cube geometry
     var geometry = new THREE.CubeGeometry(2, 2, 2);
