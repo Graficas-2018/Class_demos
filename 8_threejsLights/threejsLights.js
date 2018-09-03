@@ -111,16 +111,15 @@ function createScene(canvas) {
     root.add(group);
 
     // Create a texture map
-    var map = THREE.ImageUtils.loadTexture(mapUrl);
+    
+    var map = new THREE.TextureLoader().load(mapUrl);
     map.wrapS = map.wrapT = THREE.RepeatWrapping;
     map.repeat.set(8, 8);
 
     var color = 0xffffff;
-    var ambient = 0x888888;
     // Put in a ground plane to show off the lighting
     geometry = new THREE.PlaneGeometry(200, 200, 50, 50);
-    var mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({color:color, 
-        ambient:ambient, map:map, side:THREE.DoubleSide}));
+    var mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({color:color, map:map, side:THREE.DoubleSide}));
     mesh.rotation.x = -Math.PI / 2;
     mesh.position.y = -4.02;
     
@@ -131,8 +130,7 @@ function createScene(canvas) {
     geometry = new THREE.CubeGeometry(2, 2, 2);
     
     // And put the geometry and material together into a mesh
-    mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({color:color, 
-        ambient:ambient}));
+    mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({color:color}));
     mesh.position.y = 3;
 
     // Add the mesh to our group
@@ -142,8 +140,7 @@ function createScene(canvas) {
     geometry = new THREE.SphereGeometry(Math.sqrt(2), 50, 50);
     
     // And put the geometry and material together into a mesh
-    mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({color:color, 
-        ambient:ambient}));
+    mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({color:color}));
     mesh.position.y = 0;
 
     // Add the mesh to our group
@@ -153,8 +150,7 @@ function createScene(canvas) {
     geometry = new THREE.CylinderGeometry(1, 2, 2, 50, 10);
     
     // And put the geometry and material together into a mesh
-    mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({color:color, 
-        ambient:ambient}));
+    mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({color:color}));
     mesh.position.y = -3;
 
     // Add the  mesh to our group
