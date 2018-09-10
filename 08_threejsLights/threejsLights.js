@@ -1,4 +1,3 @@
-
 var renderer = null, 
 scene = null, 
 camera = null,
@@ -114,7 +113,7 @@ function createScene(canvas) {
     
     var map = new THREE.TextureLoader().load(mapUrl);
     map.wrapS = map.wrapT = THREE.RepeatWrapping;
-    map.repeat.set(8, 8);
+    map.repeat.set(4, 2);
 
     var color = 0xffffff;
     // Put in a ground plane to show off the lighting
