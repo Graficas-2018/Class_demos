@@ -47,7 +47,7 @@ function initControls()
         scaleScene(u.value);
         });
 
-    $("#slider_bump").slider({min: 0.01, max: 0.1, value: 0.05, step: 0.001, animate: false});
+    $("#slider_bump").slider({min: 0.01, max: 1.0, value: 0.05, step: 0.001, animate: false});
     $("#slider_bump").on("slide", function(e, u) {
         modifyBump(u.value);
         });

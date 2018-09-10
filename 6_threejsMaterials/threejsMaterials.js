@@ -152,7 +152,7 @@ function createScene(canvas)
     light.position.set(.5, 0, 1);
     root.add( light );
 
-    light = new THREE.AmbientLight ( 0 ); // 0x222222 );
+    light = new THREE.AmbientLight ( 0xaa00bb, 0.8 );
     root.add(light);
     
     // Create a group to hold the spheres

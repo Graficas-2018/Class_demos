@@ -41,7 +41,7 @@ canvas.addEventListener( 'mouseup',
 
 function initControls()
 {
-    $("#slider").slider({min: 0, max: 2, value: 1, step: 0.01, animate: false});
+    $("#slider").slider({min: 0, max: 20, value: 1, step: 0.01, animate: false});
     $("#slider").on("slide", function(e, u) {
         scaleScene(u.value);
         });

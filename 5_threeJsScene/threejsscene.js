@@ -10,9 +10,6 @@ cone = null;
 var duration = 5000; // ms
 var currentTime = Date.now();
 
-var planetGroup, planet_1, planet_2;
-var planet_1_orbit;
-
 function animate() 
 {
     var now = Date.now();
@@ -21,6 +18,8 @@ function animate()
     var fract = deltat / duration;
     var angle = Math.PI * 2 * fract;
     var movement = now * 0.001;
+
+    cubeGroup.rotation.x += angle;
 
     // Rotate the cube about its Y axis
     cube.rotation.y += angle;
@@ -73,7 +72,8 @@ function createScene(canvas)
     // Position the light out from the scene, pointing at the origin
     light.position.set(-.5, .2, 1);
     light.target.position.set(0,-2,0);
-    cubeGroup.add(light);
+    scene.add(light);
+    // cubeGroup.add(light);
 
     var textureUrl = "../images/ash_uvgrid01.jpg";
     var texture = new THREE.TextureLoader().load(textureUrl);
@@ -92,12 +92,14 @@ function createScene(canvas)
     // Add the cube mesh to our group
     cubeGroup.add( cube );
 
+    cubeGroup.position.set(1, 0, -0.5);
+
     // Create a group for the sphere
     sphereGroup = new THREE.Object3D;
     cubeGroup.add(sphereGroup);
     
     // Move the sphere group up and back from the cube
-    sphereGroup.position.set(0, 3, -4);
+    sphereGroup.position.set(0, -3, -4);
 
     // Create the sphere geometry
     geometry = new THREE.SphereGeometry(1, 20, 20);
