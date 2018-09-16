@@ -196,9 +196,9 @@ function playAnimations()
                         keys:[0, .4, .6, .7, .8, 1], 
                         values:[
                                 { r: 1, g : 1, b: 1 },
-                                { r: 1, g : 1, b: 1 },
+                                { r: 0.66, g : 0.66, b: 0.66 },
                                 { r: .333, g : .333, b: .333 },
-                                { r: 1, g : 1, b: 1 },
+                                { r: 0, g : 0, b: 0 },
                                 { r: .667, g : .667, b: .667 },
                                 { r: 1, g : 1, b: 1 },
                                 ],
@@ -227,13 +227,14 @@ function playAnimations()
                         keys:[0, 1], 
                         values:[
                                 { x : 0, y : 0 },
-                                { x : 1, y : 1 },
+                                { x : 1, y : 0 },
                                 ],
                         target:waves.material.map.offset
                     },
                 ],
             loop: loopAnimation,
             duration:duration * 1000,
+            easing:TWEEN.Easing.Sinusoidal.In,
         });
         waterAnimator.start();
     }

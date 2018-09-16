@@ -7,7 +7,7 @@ group = null,
 cube = null;
 
 var animator = null,
-duration = 2, // sec
+duration = 5, // sec
 loopAnimation = false;
 
 function run() 
@@ -87,7 +87,7 @@ function initAnimations()
                 },
             ],
         loop: loopAnimation,
-        duration:duration * 1000,
+        duration: duration * 1000,
     });
 }
 
