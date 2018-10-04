@@ -16,6 +16,7 @@ var morphs = [];
 
 var duration = 20000; // ms
 var currentTime = Date.now();
+var dancers = [];
 
 function loadFBX()
 {
@@ -37,8 +38,26 @@ function loadFBX()
         } );
         console.log(object.animations);
         dancer = object;
+        dancers.push(dancer);
         scene.add( object );
     } );
+}
+
+function onKeyDown(event)
+{
+    switch(event.keyCode)
+    {
+        case 65:
+            console.log("Cloning dancer");
+            var newDancer = cloneFbx(dancer);
+            newDancer.mixer =  new THREE.AnimationMixer( scene );
+            var action = newDancer.mixer.clipAction( newDancer.animations[ 0 ], newDancer );
+            action.play();
+            dancers.push(newDancer);
+            scene.add(newDancer);
+            console.log(dancers);
+            break;
+    }
 }
 
 function animate() {
@@ -46,8 +65,9 @@ function animate() {
     var now = Date.now();
     var deltat = now - currentTime;
     currentTime = now;
-    if ( dancer ) {
-       dancer.mixer.update( ( deltat ) * 0.001 );
+    if ( dancers.length > 0) {
+        for(dancer_i of dancers)
+            dancer_i.mixer.update( ( deltat ) * 0.001 );
     }
 }
 

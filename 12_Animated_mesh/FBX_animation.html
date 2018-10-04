@@ -18,6 +18,7 @@
 <script src="../libs/three.js/loaders/inflate.min.js"></script>
 <script src="../libs/three.js/loaders/FBXLoader.js"></script>
 
+<script src="../libs/three.js/utils/cloneFBX.js"></script>
 <script src="FBX_animation.js"></script>
 <script src="ui.js"></script>
 
@@ -27,6 +28,8 @@
 			function() {
 
 				var canvas = document.getElementById("webglcanvas");
+				
+				document.addEventListener("keydown", onKeyDown, false);
 
 				// create the scene
 				createScene(canvas);
