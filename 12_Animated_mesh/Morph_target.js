@@ -34,7 +34,7 @@ function loadGLTF()
         horse. receiveShadow = true;
         scene.add( horse );
         morphs.push(horse);
-        mixer.clipAction( gltf.animations[ 0 ], horse).setDuration( 1 ).play();
+        mixer.clipAction( gltf.animations[ 0 ], horse).setDuration( 0.5 ).play();
         console.log(gltf.animations);
     } );
 
@@ -87,7 +87,7 @@ function animate() {
     currentTime = now;
 
     if ( mixer ) {
-        mixer.update( ( deltat ) * 0.001 );
+        mixer.update( deltat * 0.001 );
     }
 
     for(var morph of morphs)
