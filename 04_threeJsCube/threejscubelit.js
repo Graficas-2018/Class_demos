@@ -51,15 +51,15 @@ function scene_setup()
     var light = new THREE.DirectionalLight( new THREE.Color("rgb(0, 200, 0)"), 1.2);
 
     // Position the light out from the scene, pointing at the origin
-    light.position.set(0, -2, 2);
+    light.position.set(0, 2, 2);
     light.target.position.set(0,0,0);
 
-    // var light2 = new THREE.DirectionalLight(0x00bb00, 0.2);
-    // light2.position.set(0, -2, 2);
-    // light2.target.position.set(0,0,0);
+    var light2 = new THREE.DirectionalLight(0xbb0000, 2.2);
+    light2.position.set(0, -2, 2);
+    light2.target.position.set(0,0,0);
 
     scene.add( light );
-    // scene.add(light2);
+    scene.add(light2);
 }
 
 function create_cube()

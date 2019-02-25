@@ -83,6 +83,8 @@ function createScene(canvas) {
     camera.position.set(-2, 6, 12);
     scene.add(camera);
     
+    orbitControls = new THREE.OrbitControls(camera, renderer.domElement);
+    
     // Create a group to hold all the objects
     root = new THREE.Object3D;
     

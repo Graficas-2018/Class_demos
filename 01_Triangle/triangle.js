@@ -45,7 +45,7 @@ function initMatrices(canvas)
     // out	mat4	the receiving matrix
     // a	mat4	the matrix to translate
     // v	vec3	vector to translate by
-    mat4.translate(modelViewMatrix, modelViewMatrix, [0, 0, -3.333]);
+    mat4.translate(modelViewMatrix, modelViewMatrix, [0, 0, -10]);
 
     // Create a project matrix with 45 degree field of view
     projectionMatrix = mat4.create();
@@ -55,7 +55,7 @@ function initMatrices(canvas)
     // aspect	number	Aspect ratio. typically viewport width/height
     // near	    number	Near bound of the frustum
     // far	    number	Far bound of the frustum
-    mat4.perspective(projectionMatrix, Math.PI / 4, canvas.width / canvas.height, 1, 10000);
+    mat4.perspective(projectionMatrix, Math.PI / 4, canvas.width / canvas.height, 1, 10);
 }
 
 // Create the vertex data for a square to be drawn.

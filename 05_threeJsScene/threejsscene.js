@@ -35,11 +35,11 @@ function animate()
 function run() {
     requestAnimationFrame(function() { run(); });
     
-        // Render the scene
-        renderer.render( scene, camera );
+    // Render the scene
+    renderer.render( scene, camera );
 
-        // Spin the cube for next frame
-        animate();
+    // Spin the cube for next frame
+    animate();
 }
 
 function createScene(canvas)
@@ -66,14 +66,18 @@ function createScene(canvas)
     cubeGroup = new THREE.Object3D;
     
     // Add a directional light to show off the objects
-    var light = new THREE.DirectionalLight( 0xffffff, 1.5);
+    var light = new THREE.DirectionalLight( 0xffffff, 1.0);
     // var light = new THREE.DirectionalLight( "rgb(255, 255, 100)", 1.5);
 
     // Position the light out from the scene, pointing at the origin
     light.position.set(-.5, .2, 1);
     light.target.position.set(0,-2,0);
     scene.add(light);
-    // cubeGroup.add(light);
+
+    // This light globally illuminates all objects in the scene equally.
+    // Cannot cast shadows
+    var ambientLight = new THREE.AmbientLight(0xffcc00, 0.5);
+    scene.add(ambientLight);
 
     var textureUrl = "../images/ash_uvgrid01.jpg";
     var texture = new THREE.TextureLoader().load(textureUrl);

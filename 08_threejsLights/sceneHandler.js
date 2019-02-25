@@ -108,6 +108,4 @@ function initControls()
     $("#textureCheckbox").click(
             function() { toggleTexture(); }
         );
-            
-    orbitControls = new THREE.OrbitControls(camera, renderer.domElement);
 }

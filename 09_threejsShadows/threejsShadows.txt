@@ -7,6 +7,7 @@ var renderer = null,
 scene = null, 
 camera = null,
 root = null,
+ring = null,
 gun = null,
 monster = null,
 group = null,
@@ -138,6 +139,7 @@ function setLightColor(light, r, g, b)
 var directionalLight = null;
 var spotLight = null;
 var ambientLight = null;
+var pointLight = null;
 var mapUrl = "../images/checker_large.gif";
 
 var SHADOW_MAP_WIDTH = 2048, SHADOW_MAP_HEIGHT = 2048;
@@ -167,13 +169,13 @@ function createScene(canvas) {
     root = new THREE.Object3D;
     
     // Add a directional light to show off the object
-    directionalLight = new THREE.DirectionalLight( 0xffffff, 1);
+    directionalLight = new THREE.DirectionalLight( 0x000000, 1);
 
     // Create and add all the lights
     directionalLight.position.set(.5, 0, 3);
     root.add(directionalLight);
 
-    spotLight = new THREE.SpotLight (0xffffff);
+    spotLight = new THREE.SpotLight (0x000000);
     spotLight.position.set(2, 8, 15);
     spotLight.target.position.set(-2, 0, -2);
     root.add(spotLight);
@@ -187,13 +189,28 @@ function createScene(canvas) {
     spotLight.shadow.mapSize.width = SHADOW_MAP_WIDTH;
     spotLight.shadow.mapSize.height = SHADOW_MAP_HEIGHT;
 
-    ambientLight = new THREE.AmbientLight ( 0x888888 );
+    ambientLight = new THREE.AmbientLight ( 0x000000);
     root.add(ambientLight);
     
-    // Create the objects
-    loadObj();
+    pointLight = new THREE.PointLight(0xffffff, 3.1, 0);
+    pointLight.position.set(0,2.5,5);
 
-    loadJson();
+    pointLight.castShadow = true;
+
+    pointLight.shadow.camera.near = 1;
+    pointLight.shadow.camera.far = 200;
+    pointLight.shadow.camera.fov = 45;
+
+    pointLight.shadow.mapSize.width = SHADOW_MAP_WIDTH;
+    pointLight.shadow.mapSize.height = SHADOW_MAP_HEIGHT;
+
+    var pointLightHelper = new THREE.PointLightHelper( pointLight, 5.1 );
+    root.add(pointLight);
+    root.add(pointLightHelper);
+    // Create the objects
+    // loadObj();
+
+    // loadJson();
 
     // Create a group to hold the objects
     group = new THREE.Object3D;
@@ -206,6 +223,7 @@ function createScene(canvas) {
 
     var color = 0xffffff;
 
+    var asteroid = new THREE.Object3D();
     // Put in a ground plane to show off the lighting
     geometry = new THREE.PlaneGeometry(200, 200, 50, 50);
     var mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({color:color, map:map, side:THREE.DoubleSide}));
@@ -219,16 +237,16 @@ function createScene(canvas) {
     mesh.receiveShadow = true;
     
     // Create the cube geometry
-    geometry = new THREE.CubeGeometry(2, 2, 2);
+    geometry = new THREE.SphereGeometry(0.8, 20, 20);
     
     // And put the geometry and material together into a mesh
     mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({color:color}));
-    mesh.position.y = 3;
+    mesh.position.y = 2;
     mesh.castShadow = true;
-    mesh.receiveShadow = false;
+    mesh.receiveShadow = true;
 
     // Add the mesh to our group
-    group.add( mesh );
+    asteroid.add( mesh );
 
     // Create the cylinder geometry
     geometry = new THREE.CylinderGeometry(1, 2, 2, 50, 10);
@@ -237,12 +255,24 @@ function createScene(canvas) {
     mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({color:color}));
     mesh.position.y = -3;
 
+    mesh.castShadow = false;
+    mesh.receiveShadow = true;
+    
+    // Add the  mesh to our group
+    // group.add( mesh );
+
+    mesh = new THREE.Mesh(new THREE.RingGeometry(1, 2, 30), new THREE.MeshPhongMaterial({color:color, side:THREE.DoubleSide}));
+    mesh.position.set(0,2,0);
+    mesh.rotation.x = -45;
     mesh.castShadow = true;
-    mesh.receiveShadow = false;
+    mesh.receiveShadow = true;
 
     // Add the  mesh to our group
-    group.add( mesh );
+    asteroid.add( mesh );
+
+    asteroid.position.set(0,0, -15);
     
     // Now add the group to our scene
     scene.add( root );
+    scene.add( asteroid );
 }

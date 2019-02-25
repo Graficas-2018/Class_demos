@@ -60,6 +60,7 @@ function initControls()
                         
                 }
             );
+
     $("#wireframeCheckbox").click(
             function() { toggleWireframe(); }
         );
@@ -77,15 +78,16 @@ function initControls()
         },
         onChange: function (hsb, hex, rgb) {
             $('#diffuseColor div').css('backgroundColor', '#' + hex);
-            setMaterialColor(rgb.r, rgb.g, rgb.b);
+            setMaterialDiffuse(rgb.r, rgb.g, rgb.b);
         },
         onSubmit: function(hsb, hex, rgb, el) {
             $(el).val(hex);
             $('#diffuseColor div').css( "background-color", "#" + hex );
-            setMaterialColor(rgb.r, rgb.g, rgb.b);
+            setMaterialDiffuse(rgb.r, rgb.g, rgb.b);
             $(el).ColorPickerHide();
         },
     });
+
     var diffuseHex = "#ffffff";
     $('#diffuseColor').ColorPickerSetColor(diffuseHex);
     $('#diffuseColor div').css( "background-color", diffuseHex );

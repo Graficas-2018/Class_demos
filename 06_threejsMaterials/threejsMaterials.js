@@ -41,7 +41,9 @@ function run()
 }
 
 // Unlit (Basic Material) - With this material type, only the textures, colors, and transparency values are used to render the surface of the object. There is no contribution from lights in the scene.
+
 // Phong shading - This material type implements a simple, fairly realistic-looking shading model with high performance. Phong-shaded objects will show brightly lit areas (specular reflections) where light hits directly, will light well along any edges that mostly face the light source, and will darkly shade areas where the edge of the object faces away from the light source.
+
 // Lambertian reflectance - In Lambert shading, the apparent brightness of the surface to an observer is the same regardless of the observer’s angle of view. 
 function createMaterials()
 {
@@ -57,8 +59,8 @@ function createMaterials()
     materials["lambert-textured"] = new THREE.MeshLambertMaterial({ map: textureMap });
 }
 
-// Changes the diffuse color of the material. The material’s diffuse color specifies how much the object reflects lighting sources that cast rays in a direction —that is, directional, point, and spotlights.
-function setMaterialColor(r, g, b)
+// Changes the diffuse color of the material. The material’s diffuse color specifies how much the object reflects lighting sources that cast rays in a direction — directional, point, and spotlights.
+function setMaterialDiffuse(r, g, b)
 {
     r /= 255;
     g /= 255;
@@ -146,13 +148,13 @@ function createScene(canvas)
     root = new THREE.Object3D;
     
     // Add a directional light to show off the object
-    var light = new THREE.DirectionalLight( 0xffffff, 2);
+    var light = new THREE.DirectionalLight( 0xffffff, 1);
 
     // Position the light out from the scene, pointing at the origin
     light.position.set(.5, 0, 1);
     root.add( light );
 
-    light = new THREE.AmbientLight ( 0xaa00bb, 0.8 );
+    light = new THREE.AmbientLight ( 0xaaccbb, 0.3 );
     root.add(light);
     
     // Create a group to hold the spheres

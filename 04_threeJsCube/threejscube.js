@@ -86,12 +86,15 @@ function create_cube()
     // Finally, add the mesh to our scene
     scene.add( cube );
 
+    console.log(geometry.faces.length);
     for ( var i = 0; i < geometry.faces.length; i +=2 ) {
         var color = Math.random() * 0xffffff;
         geometry.faces[ i ].color.setHex( color );
         geometry.faces[ i + 1].color.setHex( color );
     }
 
+    // .vertexColors : Integer Defines whether vertex coloring is used. 
+    // FaceColors colors faces according to each Face3 Color value.
     var material2 = new THREE.MeshBasicMaterial( { color: 0xffffff, vertexColors: THREE.FaceColors } );
 
     cube2 = new THREE.Mesh(geometry, material2);
